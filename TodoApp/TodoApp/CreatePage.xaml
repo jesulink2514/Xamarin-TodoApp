@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoApp.CreatePage">
+    <StackLayout Padding="20">
+        <Label 
+            Text="Nueva tarea"
+            TextColor="Green"
+            FontSize="18"
+            />
+
+        <Entry x:Name="ToDo" Placeholder="Nuevo To-Do"
+               WidthRequest="150"/>
+        <Entry x:Name="Prioridad" Placeholder="Prioridad"
+               WidthRequest="150"/>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Fecha Fin" TextColor="Green" VerticalOptions="End"/>
+            <DatePicker x:Name="FechaFin"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Hora Fin" TextColor="Green" VerticalOptions="End"/>
+            <TimePicker x:Name="HoraFin"/>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Guardar" WidthRequest="95" BackgroundColor="Green"
+                    Clicked="OnGuardar" TextColor="White"/>
+            <Button Text="Cancelar" WidthRequest="95" BackgroundColor="Red"
+                    Clicked="OnCancelar" TextColor="White"/>
+            <Button Text="Revisar" WidthRequest="95" BackgroundColor="Blue"
+                    Clicked="OnRevisar" TextColor="White"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
