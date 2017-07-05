@@ -41,6 +41,9 @@
     <Compile Include="CreatePage.xaml.cs">
       <DependentUpon>CreatePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ListTasksPage.xaml.cs">
+      <DependentUpon>ListTasksPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TodoItem.cs" />
   </ItemGroup>
@@ -66,6 +69,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CreatePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ListTasksPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
