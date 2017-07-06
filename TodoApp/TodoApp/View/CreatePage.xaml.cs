@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using TodoApp.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,8 +13,11 @@ namespace TodoApp
     public partial class CreatePage : ContentPage
     {
         public List<TodoItem> ToDoItems = new List<TodoItem>();
+        private CreatePageViewModel vm;
         public CreatePage()
         {
+            vm = new CreatePageViewModel();
+            this.BindingContext = vm;
             InitializeComponent();
         }
 
