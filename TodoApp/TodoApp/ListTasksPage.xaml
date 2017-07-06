@@ -2,5 +2,22 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TodoApp.ListTasksPage">
-    <Label Text="{Binding Nombre}"/>
+    <ListView x:Name="LstTodos" ItemTapped="OnItemTapped" 
+              ItemsSource="{Binding TodoItems}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Padding="5" Spacing="2">
+                        <Label Text="{Binding ToDo}"
+                               FontSize="12" TextColor="Red"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Prioridad:" FontSize="10"/>
+                            <Label Text="{Binding Prioridad}"
+                                   FontSize="10"/>
+                        </StackLayout>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>

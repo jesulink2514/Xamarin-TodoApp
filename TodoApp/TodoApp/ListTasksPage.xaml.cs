@@ -12,12 +12,19 @@ namespace TodoApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListTasksPage : ContentPage
     {
-        public string Nombre { get; set; }
-        public ListTasksPage()
+        public List<TodoItem> TodoItems { get; set; }
+        public ListTasksPage(List<TodoItem> todoItems)
         {
-            this.Nombre = "Jesus Angulo";
+            this.TodoItems = todoItems;
             this.BindingContext = this;
             InitializeComponent();
+        }
+
+        private void OnItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var todo = e.Item as TodoItem;
+
+            DisplayAlert("Elegida", todo.ToDo + "fue elegida", "Ok");
         }
     }
 }

@@ -53,7 +53,7 @@ namespace TodoApp
         private void OnRevisar(object o, EventArgs e)
         {
             var items = ToDoItems;
-            Navigation.PushAsync(new ListTasksPage());
+            Navigation.PushAsync(new ListTasksPage(items));
         }
     }
 }
