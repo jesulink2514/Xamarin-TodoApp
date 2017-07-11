@@ -12,10 +12,8 @@ namespace TodoApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListTasksPage : ContentPage
     {
-        public List<TodoItem> TodoItems { get; set; }
-        public ListTasksPage(List<TodoItem> todoItems)
+        public ListTasksPage()
         {
-            this.TodoItems = todoItems;
             this.BindingContext = this;
             InitializeComponent();
         }
@@ -24,7 +22,13 @@ namespace TodoApp
         {
             var todo = e.Item as TodoItem;
 
-            DisplayAlert("Elegida", todo.ToDo + "fue elegida", "Ok");
+            DisplayAlert("Elegida", todo.ToDo + " fue elegida", "Ok");
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            LstTodos.ItemsSource = App.Database.GetTodos();
         }
     }
 }

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SQLite;
 using Xamarin.Forms;
 
@@ -24,7 +20,32 @@ namespace TodoApp.Infrastructure
         {
             lock (_lock)
             {
-                return 0;
+                if (todoItem.Id != 0)
+                {
+                    database.Update(todoItem);
+                }
+                else
+                {
+                    database.Insert(todoItem);
+                }
+                return todoItem.Id;
+            }
+        }
+
+        public TodoItem GetTodo(int id)
+        {
+            lock (_lock)
+            {
+                return database.Table<TodoItem>()
+                    .FirstOrDefault(t => t.Id == id);
+            }
+        }
+
+        public IList<TodoItem> GetTodos()
+        {
+            lock (_lock)
+            {
+                return database.Table<TodoItem>().ToList();
             }
         }
     }

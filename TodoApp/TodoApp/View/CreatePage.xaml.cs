@@ -12,8 +12,22 @@ namespace TodoApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CreatePage : ContentPage
     {
-        public List<TodoItem> ToDoItems = new List<TodoItem>();
         private CreatePageViewModel vm;
+        private int updateId;
+        public CreatePage(int id)
+        {
+            vm = new CreatePageViewModel();
+            this.BindingContext = vm;
+            InitializeComponent();
+
+            var todo = App.Database.GetTodo(id);
+            ToDo.Text = todo.ToDo;
+            Prioridad.Text = todo.Prioridad;
+            FechaFin.Date = todo.FechaFin;
+            HoraFin.Time = todo.FechaFin.TimeOfDay;
+            updateId = todo.Id;
+        }
+
         public CreatePage()
         {
             vm = new CreatePageViewModel();
@@ -23,23 +37,14 @@ namespace TodoApp
 
         private void OnGuardar(object o,EventArgs e)
         {
-            this.ToDoItems.Add(new TodoItem(ToDo.Text,
-                Prioridad.Text,
-                GetFechaFin(FechaFin.Date,
+            vm.AddTask(ToDo.Text, Prioridad.Text, FechaFin.Date,
                 HoraFin.Time.Hours,
                 HoraFin.Time.Minutes,
-                HoraFin.Time.Seconds),
-                false
-                ));
+                HoraFin.Time.Seconds,
+                updateId,
+                false);
 
             Limpiar();
-        }
-        private DateTime GetFechaFin(DateTime fecha,int horas,int minutos,int segundos)
-        {
-            return new DateTime(
-                fecha.Year, fecha.Month, fecha.Day,
-                horas,minutos,segundos
-                );
         }
 
         private void Limpiar()
@@ -55,8 +60,7 @@ namespace TodoApp
         }
         private void OnRevisar(object o, EventArgs e)
         {
-            var items = ToDoItems;
-            Navigation.PushAsync(new ListTasksPage(items));
+            Navigation.PushAsync(new ListTasksPage());
         }
     }
 }
