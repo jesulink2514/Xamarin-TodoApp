@@ -38,6 +38,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\DateTimeConverter.cs" />
     <Compile Include="Infrastructure\ISQLite.cs" />
     <Compile Include="Infrastructure\TodoDatabase.cs" />
     <Compile Include="ViewModel\CreatePageViewModel.cs" />
